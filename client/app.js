@@ -7,6 +7,7 @@ window.app = {
     var self = this;
 
     this.cards = new CardCollection();
+    this.cards.fetch();
 
     domready(function () {
       self.view = new MainView({
