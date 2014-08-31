@@ -1,0 +1,10 @@
+div.wrapper
+  h1 Panda Deck
+  form(name='card', method='post')
+    fieldset
+      legend Create a card
+      input(type='text', name='question', placeholder='Question')
+      input(type='text', name='answer', placeholder='Answer')
+      button(type='submit') Add
+
+  div(data-hook='card-collection')
