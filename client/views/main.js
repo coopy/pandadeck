@@ -1,45 +1,31 @@
-var CardView = require('./card');
 var View = require('ampersand-view');
+var ViewSwitcher = require('ampersand-view-switcher');
 var templates = require('../templates');
-
-var forEach = Array.prototype.forEach;
 
 
 module.exports = View.extend({
   autoRender: true,
   template: templates.main,
   events: {
-    'submit form': 'handleSubmitCard'
+    'click a[href]': 'handleLinkClick',
+  },
+  initialize: function () {
+    this.listenTo(app.router, 'page', this.handleNewPage);
   },
   render: function () {
     this.renderWithTemplate();
-    this.renderCollection(app.cards, CardView, this.queryByHook('card-collection'));
-    this.focusForm();
+    this.pages = new ViewSwitcher(this.queryByHook('page-container'));
   },
-  handleSubmitCard: function (event) {
-    event.preventDefault();
+  handleLinkClick: function (event) {
+    var target = event.target;
+    var isLocal = target.host === window.location.host;
 
-    var inputs = document.getElementsByTagName('input', event.srcElement);
-    var props = {};
-    var propName, propValue;
-
-    forEach.call(inputs, function (input) {
-      propName = input.attributes.getNamedItem('name').value;
-      propValue = input.value;
-
-      // Simple validation
-      if (!propValue.length) {
-        return;
-      }
-
-      props[propName] = propValue;
-    });
-
-    app.cards.create(props);
-    this.render();
+    if (isLocal && !event.altKey && !event.metaKey && !event.shiftKey && !event.ctrlKey) {
+      event.preventDefault();
+      app.router.history.navigate(target.pathname, { trigger: true });
+    }
   },
-  focusForm: function () {
-    var questionInput = this.query('input[name="question"]');
-    questionInput.focus();
+  handleNewPage: function (pageView) {
+    this.pages.set(pageView);
   }
 });

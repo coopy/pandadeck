@@ -27,6 +27,7 @@ server.pack.register({
         }, done);
       },
       stylesheets: [
+        __dirname + '/assets/bootstrap.min.css',
         __dirname + '/assets/main.css'
       ]
     }

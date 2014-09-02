@@ -1,3 +1,7 @@
-div.card
-  p= model.question
-  p= model.answer
+.card
+  .front.active
+    label Front of card
+    p= model.question
+  .back
+    label Back of card
+    p= model.answer

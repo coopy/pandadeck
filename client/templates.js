@@ -13,6 +13,17 @@
 
     var templatizer = {};
     templatizer["includes"] = {};
+    templatizer["pages"] = {};
+
+    // includes/card-form-wrapper.jade compiled template
+    templatizer["includes"]["card-form-wrapper"] = function tmpl_includes_card_form_wrapper() {
+        return '<form data-hook="card-form" class="card card-form"><div data-hook="field-container"></div><a href="" role="button" class="edit-front">Edit Front</a><a href="" role="button" class="edit-back">Edit Back</a><button role="submit">Done</button></form>';
+    };
+
+    // includes/card-input.jade compiled template
+    templatizer["includes"]["card-input"] = function tmpl_includes_card_input() {
+        return '<div class="card-input-view"><label><span data-hook="label"></span><br/><textarea class="form-input"></textarea><div data-hook="message-container" class="message message-below message-error"><p data-hook="message-text"></p></div></label></div>';
+    };
 
     // includes/card.jade compiled template
     templatizer["includes"]["card"] = function tmpl_includes_card(locals) {
@@ -21,14 +32,24 @@
         var jade_interp;
         var locals_for_with = locals || {};
         (function(model) {
-            buf.push('<div class="card"><p>' + jade.escape(null == (jade_interp = model.question) ? "" : jade_interp) + "</p><p>" + jade.escape(null == (jade_interp = model.answer) ? "" : jade_interp) + "</p></div>");
+            buf.push('<div class="card"><div class="front active"><label>Front of card</label><p>' + jade.escape(null == (jade_interp = model.question) ? "" : jade_interp) + '</p></div><div class="back"><label>Back of card</label><p>' + jade.escape(null == (jade_interp = model.answer) ? "" : jade_interp) + "</p></div></div>");
         }).call(this, "model" in locals_for_with ? locals_for_with.model : typeof model !== "undefined" ? model : undefined);
         return buf.join("");
     };
 
     // main.jade compiled template
     templatizer["main"] = function tmpl_main() {
-        return '<div class="wrapper"><h1>Panda Deck</h1><form name="card" method="post"><fieldset><legend>Create a card</legend><input type="text" name="question" placeholder="Question"/><input type="text" name="answer" placeholder="Answer"/><button type="submit">Add</button></fieldset></form><div data-hook="card-collection"></div></div>';
+        return '<div class="wrapper"><nav class="navbar navbar-default"><div class="container-fluid"></div><ul class="nav navbar-nav"><li><a href="/cards">Cards</a></li><li><a href="/flash">Flash</a></li></ul></nav><div class="main-content"><h1>Panda Deck</h1><div data-hook="page-container" class="page-container"></div></div></div>';
+    };
+
+    // pages/cards.jade compiled template
+    templatizer["pages"]["cards"] = function tmpl_pages_cards() {
+        return '<div class="page cards"><div data-hook="card-form-wrapper" class="card-form-wrapper"></div><div data-hook="card-collection" class="card-collection"></div></div>';
+    };
+
+    // pages/flash.jade compiled template
+    templatizer["pages"]["flash"] = function tmpl_pages_flash() {
+        return '<div class="page flash"><h2>Flash!</h2><div data-hook="card-container" class="card-container"></div><a role="button" href="" class="previous-card">Previous</a><a role="button" href="" class="next-card">Next</a></div>';
     };
 
     return templatizer;
