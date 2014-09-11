@@ -13,8 +13,9 @@ module.exports = CardView.extend({
     'click .edit-front': 'handleClickEdit',
     'click .edit-back': 'handleClickEdit'
   },
-  initialize: function () {
+  initialize: function (options) {
     this.model = new CardModel();
+    this.deckIndex = options.deckIndex;
   },
   render: function () {
     var self = this;
@@ -24,11 +25,9 @@ module.exports = CardView.extend({
       model: this.model,
       el: this.queryByHook('card-form'),
       submitCallback: function (data) {
-        app.cards.create(data);
-        var inputs = self.form.el.getElementsByTagName('textarea');
-        for (var i = 0; i < inputs.length; i++) {
-          inputs[i].value = '';
-        }
+        var deckModel = app.decks.at(self.deckIndex);
+        deckModel.cards.create(data);
+        self.form.reset();
       }
     });
     this.registerSubview(this.form);

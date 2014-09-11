@@ -55,3 +55,11 @@ a:hover {
 .back-is-active .card-input-view[data-name='question'] {
   display: none;
 }
+.card-list-item {
+  list-style-type: none;
+  margin: 0.5em 0 0 0;
+}
+.card-collection,
+.card-collection ul {
+  padding: 0;
+}

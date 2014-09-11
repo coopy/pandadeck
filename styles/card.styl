@@ -1,0 +1,57 @@
+.card
+  background-color: $yellow
+  border-left: 2px solid $blue
+  border-top: 2px solid $blue
+  border-right: 2px solid $black
+  border-bottom: 2px solid $black
+  padding: 1em
+  margin-right: 1em
+
+  width: 97%
+  height: 220px
+
+  p
+    margin-top: 1em
+    font-size: 2em
+
+  label
+    font-weight: normal
+
+
+.card .back
+  display: none
+
+.card.back-is-active .back
+  display: block
+
+.card.back-is-active .front
+  display: none
+
+.card-input-view
+
+  textarea
+    font-size: 2em
+
+    margin-top: 1em
+    width: 100%
+    height: 4em
+
+.card-form a
+  margin-right: 1em
+
+.card-input-view[data-name='answer']
+  display: none
+
+.back-is-active .card-input-view[data-name='answer']
+  display: block
+
+.back-is-active .card-input-view[data-name='question']
+  display: none
+
+.card-list-item
+  list-style-type: none
+  margin: .5em 0 0 0
+
+.card-collection,
+.card-collection ul
+  padding: 0

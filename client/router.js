@@ -1,19 +1,31 @@
 var Router = require('ampersand-router');
+var DecksPage = require('./pages/decks');
 var CardsPage = require('./pages/cards');
 var FlashPage = require('./pages/flash');
 
 module.exports = Router.extend({
   routes: {
-    ''      : 'cards',
-    'cards' : 'cards',
-    'flash' : 'flash'
+    ''                       : 'decks',
+    'decks'                  : 'decks',
+    'deck/:deckIndex/cards' : 'cards',
+    'deck/:deckIndex/flash' : 'flash'
   },
 
-  cards: function () {
-    this.trigger('page', new CardsPage());
+  decks: function () {
+    this.trigger('page', new DecksPage());
   },
 
-  flash: function () {
-    this.trigger('page', new FlashPage());
+  cards: function (deckIndex) {
+    deckIndex = window.parseInt(deckIndex, 10);
+    this.trigger('page', new CardsPage({
+      deckIndex: deckIndex
+    }));
+  },
+
+  flash: function (deckIndex) {
+    deckIndex = window.parseInt(deckIndex, 10);
+    this.trigger('page', new FlashPage({
+      deckIndex: deckIndex
+    }));
   }
 });

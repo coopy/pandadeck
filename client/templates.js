@@ -17,12 +17,24 @@
 
     // includes/card-form-wrapper.jade compiled template
     templatizer["includes"]["card-form-wrapper"] = function tmpl_includes_card_form_wrapper() {
-        return '<form data-hook="card-form" class="card card-form"><div data-hook="field-container"></div><a href="" role="button" class="edit-front">Edit Front</a><a href="" role="button" class="edit-back">Edit Back</a><button role="submit">Done</button></form>';
+        return '<div class="card-form-wrapper"><p>Create a new card</p><form data-hook="card-form" class="card card-form"><div data-hook="field-container"></div><a href="" role="button" class="edit-front">Edit Front</a><a href="" role="button" class="edit-back">Edit Back</a><button role="submit">Done</button></form></div>';
     };
 
     // includes/card-input.jade compiled template
     templatizer["includes"]["card-input"] = function tmpl_includes_card_input() {
         return '<div class="card-input-view"><label><span data-hook="label"></span><br/><textarea class="form-input"></textarea><div data-hook="message-container" class="message message-below message-error"><p data-hook="message-text"></p></div></label></div>';
+    };
+
+    // includes/card-list-item.jade compiled template
+    templatizer["includes"]["card-list-item"] = function tmpl_includes_card_list_item(locals) {
+        var buf = [];
+        var jade_mixins = {};
+        var jade_interp;
+        var locals_for_with = locals || {};
+        (function(model) {
+            buf.push('<li class="card-list-item"><ul><li>Front:<span>' + jade.escape(null == (jade_interp = model.question) ? "" : jade_interp) + "</span></li><li>Back:<span>" + jade.escape(null == (jade_interp = model.answer) ? "" : jade_interp) + "</span></li></ul></li>");
+        }).call(this, "model" in locals_for_with ? locals_for_with.model : typeof model !== "undefined" ? model : undefined);
+        return buf.join("");
     };
 
     // includes/card.jade compiled template
@@ -37,14 +49,38 @@
         return buf.join("");
     };
 
+    // includes/deck.jade compiled template
+    templatizer["includes"]["deck"] = function tmpl_includes_deck(locals) {
+        var buf = [];
+        var jade_mixins = {};
+        var jade_interp;
+        var locals_for_with = locals || {};
+        (function(model) {
+            buf.push('<div class="deck"><p><a' + jade.attr("href", model.cardsURL, true, false) + ">" + jade.escape(null == (jade_interp = model.name) ? "" : jade_interp) + "</a></p></div>");
+        }).call(this, "model" in locals_for_with ? locals_for_with.model : typeof model !== "undefined" ? model : undefined);
+        return buf.join("");
+    };
+
     // main.jade compiled template
     templatizer["main"] = function tmpl_main() {
-        return '<div class="wrapper"><nav class="navbar navbar-default"><div class="container-fluid"></div><ul class="nav navbar-nav"><li><a href="/cards">Cards</a></li><li><a href="/flash">Flash</a></li></ul></nav><div class="main-content"><h1>Panda Deck</h1><div data-hook="page-container" class="page-container"></div></div></div>';
+        return '<div class="wrapper"><nav class="navbar navbar-default"><div class="container-fluid"></div><ul class="nav navbar-nav"><li><a href="/cards">Cards</a></li><li><a href="/flash">Flash</a></li></ul></nav><div class="main-content"><h1>PandaFlash.me</h1><div data-hook="page-container" class="page-container"></div></div></div>';
     };
 
     // pages/cards.jade compiled template
-    templatizer["pages"]["cards"] = function tmpl_pages_cards() {
-        return '<div class="page cards"><div data-hook="card-form-wrapper" class="card-form-wrapper"></div><div data-hook="card-collection" class="card-collection"></div></div>';
+    templatizer["pages"]["cards"] = function tmpl_pages_cards(locals) {
+        var buf = [];
+        var jade_mixins = {};
+        var jade_interp;
+        var locals_for_with = locals || {};
+        (function(model) {
+            buf.push('<div class="page cards"><div class="deck"><h2>' + jade.escape(null == (jade_interp = model.name) ? "" : jade_interp) + '</h2><div data-hook="card-form-wrapper" class="card-form-wrapper"></div><ul data-hook="card-collection" class="card-collection"></ul></div></div>');
+        }).call(this, "model" in locals_for_with ? locals_for_with.model : typeof model !== "undefined" ? model : undefined);
+        return buf.join("");
+    };
+
+    // pages/decks.jade compiled template
+    templatizer["pages"]["decks"] = function tmpl_pages_decks() {
+        return '<div class="page decks"><h2>My Decks</h2><button id="add-new-deck" class="pull-right">Add new deck</button><form data-hook="deck-form" class="deck-form hidden"></form><div data-hook="deck-collection" class="deck-collection"></div></div>';
     };
 
     // pages/flash.jade compiled template
