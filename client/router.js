@@ -7,8 +7,8 @@ module.exports = Router.extend({
   routes: {
     ''                       : 'decks',
     'decks'                  : 'decks',
-    'deck/:deckIndex/cards' : 'cards',
-    'deck/:deckIndex/flash' : 'flash'
+    'decks/:deckIndex'       : 'cards',
+    'decks/:deckIndex/flash' : 'flash'
   },
 
   decks: function () {

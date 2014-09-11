@@ -9,13 +9,13 @@ module.exports = Model.extend({
     cardsURL: {
       deps: [],
       fn: function () {
-        return ['/deck', app.decks.indexOf(this), 'cards'].join('/');
+        return ['/decks', app.decks.indexOf(this)].join('/');
       }
     },
     flashURL: {
       deps: [],
       fn: function () {
-        return ['/deck', app.decks.indexOf(this), 'flash'].join('/');
+        return ['/decks', app.decks.indexOf(this), 'flash'].join('/');
       }
     }
   },
