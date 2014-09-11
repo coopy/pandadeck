@@ -63,7 +63,7 @@
 
     // main.jade compiled template
     templatizer["main"] = function tmpl_main() {
-        return '<div class="wrapper"><nav class="navbar navbar-default"><div class="container-fluid"></div><ul class="nav navbar-nav"><li><a href="/cards">Cards</a></li><li><a href="/flash">Flash</a></li></ul></nav><div class="main-content"><h1>PandaFlash.me</h1><div data-hook="page-container" class="page-container"></div></div></div>';
+        return '<div class="wrapper"><nav class="navbar navbar-default"><div class="container-fluid"></div><ul class="nav navbar-nav"><li><a href="/cards">Cards</a></li></ul></nav><div class="main-content"><h1>PandaFlash.me</h1><div data-hook="page-container" class="page-container"></div></div></div>';
     };
 
     // pages/cards.jade compiled template
@@ -73,7 +73,7 @@
         var jade_interp;
         var locals_for_with = locals || {};
         (function(model) {
-            buf.push('<div class="page cards"><div class="deck"><h2>' + jade.escape(null == (jade_interp = model.name) ? "" : jade_interp) + '</h2><div data-hook="card-form-wrapper" class="card-form-wrapper"></div><ul data-hook="card-collection" class="card-collection"></ul></div></div>');
+            buf.push('<div class="page cards"><div class="deck"><h2>' + jade.escape(null == (jade_interp = model.name) ? "" : jade_interp) + '</h2><nav class="navbar navbar-default"><div class="container-fluid"></div><ul class="nav navbar-nav"><li><button class="add-new-card">Add new card</button></li><li><a' + jade.attr("href", model.flashURL, true, false) + '>Flash me!</a></li></ul></nav><div data-hook="card-form-wrapper" class="card-form-wrapper"></div><ul data-hook="card-collection" class="card-collection"></ul></div></div>');
         }).call(this, "model" in locals_for_with ? locals_for_with.model : typeof model !== "undefined" ? model : undefined);
         return buf.join("");
     };

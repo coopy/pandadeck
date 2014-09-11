@@ -1,5 +1,13 @@
 .page.cards
   .deck
     h2= model.name
+    nav.navbar.navbar-default
+      .container-fluid
+      ul.nav.navbar-nav
+        li
+          button.add-new-card Add new card
+        li
+          a(href=model.flashURL) Flash me!
+
     .card-form-wrapper(data-hook='card-form-wrapper')
     ul.card-collection(data-hook='card-collection')

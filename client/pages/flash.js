@@ -6,26 +6,32 @@ var templates = require('../templates');
 module.exports = View.extend({
   template: templates.pages.flash,
   autoRender: true,
+  // The currently displayed card's index.
   cardIndex: 0,
   events: {
     'click .next-card': 'handleClickNextCard',
     'click .previous-card': 'handleClickPreviousCard',
   },
+  initialize: function (options) {
+    this.deckIndex = options.deckIndex;
+    this.model = app.decks.at(this.deckIndex);
+    this.model.cards.fetch();
+  },
   render: function () {
     this.renderWithTemplate();
     this.cardSwitcher = new ViewSwitcher(this.queryByHook('card-container'));
-    if (app.cards.length > 0) {
+    if (this.model.cards.length > 0) {
       this.renderCard();
     } else {
-      this.listenToOnce(app.cards, 'sync', this.renderCard);
+      this.listenToOnce(this.model.cards, 'sync', this.renderCard);
     }
   },
   renderCard: function () {
-    this.cardSwitcher.set(new CardView({ model: app.cards.at(this.cardIndex) }));
+    this.cardSwitcher.set(new CardView({ model: this.model.cards.at(this.cardIndex) }));
   },
   handleClickNextCard: function (event) {
     event.preventDefault();
-    if (this.cardIndex < app.cards.length - 1) {
+    if (this.cardIndex < this.model.cards.length - 1) {
       // Increment cardIndex and render next card.
       this.cardIndex += 1;
       this.renderCard();

@@ -11,6 +11,12 @@ module.exports = Model.extend({
       fn: function () {
         return ['/deck', app.decks.indexOf(this), 'cards'].join('/');
       }
+    },
+    flashURL: {
+      deps: [],
+      fn: function () {
+        return ['/deck', app.decks.indexOf(this), 'flash'].join('/');
+      }
     }
   },
   children: {
