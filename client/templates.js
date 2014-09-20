@@ -17,7 +17,7 @@
 
     // includes/card-form-wrapper.jade compiled template
     templatizer["includes"]["card-form-wrapper"] = function tmpl_includes_card_form_wrapper() {
-        return '<div class="card-form-wrapper"><p>Create a new card</p><form data-hook="card-form" class="card card-form"><div data-hook="field-container"></div><a href="" role="button" class="edit-front">Edit Front</a><a href="" role="button" class="edit-back">Edit Back</a><button role="submit">Done</button></form></div>';
+        return '<div class="card-form-wrapper"><h3>Create a new card</h3><form data-hook="card-form" class="card card-form"><div data-hook="field-container"></div><a href="" role="button" class="flip-card">Flip card over</a><button role="submit">Done</button></form></div>';
     };
 
     // includes/card-input.jade compiled template
@@ -32,7 +32,7 @@
         var jade_interp;
         var locals_for_with = locals || {};
         (function(model) {
-            buf.push('<li class="card-list-item"><ul><li>Front:<span>' + jade.escape(null == (jade_interp = model.question) ? "" : jade_interp) + "</span></li><li>Back:<span>" + jade.escape(null == (jade_interp = model.answer) ? "" : jade_interp) + "</span></li></ul></li>");
+            buf.push('<li class="card-list-item"><span>' + jade.escape(null == (jade_interp = model.cardNumber) ? "" : jade_interp) + "</span><span>" + jade.escape(null == (jade_interp = model.front) ? "" : jade_interp) + "</span></li>");
         }).call(this, "model" in locals_for_with ? locals_for_with.model : typeof model !== "undefined" ? model : undefined);
         return buf.join("");
     };
@@ -44,7 +44,7 @@
         var jade_interp;
         var locals_for_with = locals || {};
         (function(model) {
-            buf.push('<div class="card"><div class="front active"><label>Front of card</label><p>' + jade.escape(null == (jade_interp = model.question) ? "" : jade_interp) + '</p></div><div class="back"><label>Back of card</label><p>' + jade.escape(null == (jade_interp = model.answer) ? "" : jade_interp) + "</p></div></div>");
+            buf.push('<div class="card"><p class="card-index">' + jade.escape(null == (jade_interp = model.cardNumber) ? "" : jade_interp) + '</p><div class="front active"><label>Front of card</label><p class="card-text">' + jade.escape(null == (jade_interp = model.front) ? "" : jade_interp) + '</p></div><div class="back"><label>Back of card</label><p class="card-text">' + jade.escape(null == (jade_interp = model.back) ? "" : jade_interp) + "</p></div></div>");
         }).call(this, "model" in locals_for_with ? locals_for_with.model : typeof model !== "undefined" ? model : undefined);
         return buf.join("");
     };

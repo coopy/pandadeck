@@ -1,7 +1,8 @@
 .card
+  p.card-index= model.cardNumber
   .front.active
     label Front of card
-    p= model.question
+    p.card-text= model.front
   .back
     label Back of card
-    p= model.answer
+    p.card-text= model.back

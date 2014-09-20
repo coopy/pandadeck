@@ -21,7 +21,7 @@ a:hover {
   width: 97%;
   height: 220px;
 }
-.card p {
+.card p.card-text {
   margin-top: 1em;
   font-size: 2em;
 }
@@ -46,13 +46,13 @@ a:hover {
 .card-form a {
   margin-right: 1em;
 }
-.card-input-view[data-name='answer'] {
+.card-input-view[data-name='back'] {
   display: none;
 }
-.back-is-active .card-input-view[data-name='answer'] {
+.back-is-active .card-input-view[data-name='back'] {
   display: block;
 }
-.back-is-active .card-input-view[data-name='question'] {
+.back-is-active .card-input-view[data-name='front'] {
   display: none;
 }
 .card-list-item {
@@ -62,4 +62,10 @@ a:hover {
 .card-collection,
 .card-collection ul {
   padding: 0;
+}
+.card-list-item span {
+  margin-right: 0.5em;
+}
+.card-input-view label {
+  width: 100%;
 }

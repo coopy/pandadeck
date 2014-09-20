@@ -5,11 +5,11 @@ module.exports = FormView.extend({
   fields: function () {
     return [
       new CardInputView({
-        // label: 'Front of card',
-        name: 'question',
+        label: 'Front of card',
+        name: 'front',
         type: 'textarea',
         value: this.model && this.model.question,
-        placeholder: 'Front of card',
+        // placeholder: 'Front of card',
         parent: this,
         tests: [
           function (val) {
@@ -19,11 +19,11 @@ module.exports = FormView.extend({
         ]
       }),
       new CardInputView({
-        // label: 'Back of card',
-        name: 'answer',
+        label: 'Back of card',
+        name: 'back',
         type: 'textarea',
-        value: this.model && this.model.answer,
-        placeholder: 'Back of card',
+        value: this.model && this.model.front,
+        // placeholder: 'Back of card',
         parent: this,
         tests: [
           function (val) {
