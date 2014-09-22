@@ -2,8 +2,8 @@ var Hapi = require('hapi');
 var moonboots = require('moonboots_hapi');
 var stylizer = require('stylizer');
 var templatizer = require('templatizer');
-
-var server = Hapi.createServer(8888, 'localhost');
+var port = 8888;
+var server = Hapi.createServer(port, 'localhost');
 
 server.pack.register({
   plugin: moonboots,
@@ -38,6 +38,6 @@ server.pack.register({
     console.log(err);
     process.exit(1);
   }
-  console.log('running server at http://localhost:8888');
+  console.log('running server at http://localhost:' + port);
   server.start();
 });
