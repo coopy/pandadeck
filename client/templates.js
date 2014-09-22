@@ -17,7 +17,7 @@
 
     // includes/card-form-wrapper.jade compiled template
     templatizer["includes"]["card-form-wrapper"] = function tmpl_includes_card_form_wrapper() {
-        return '<div class="card-form-wrapper"><h3>Create a new card</h3><form data-hook="card-form" class="card card-form"><div data-hook="field-container"></div><a href="" role="button" class="flip-card">Flip card over</a><button role="submit">Done</button></form></div>';
+        return '<div class="card-form-wrapper"><h3>Create a new card</h3><form data-hook="card-form" class="card card-form"><div data-hook="field-container"></div><a href="" role="button" class="btn btn-default flip-card">Flip card over</a><a role="submit" class="btn btn-primary submit">Done</a></form></div>';
     };
 
     // includes/card-input.jade compiled template
@@ -73,7 +73,7 @@
         var jade_interp;
         var locals_for_with = locals || {};
         (function(model) {
-            buf.push('<div class="page cards"><div class="deck"><h2>' + jade.escape(null == (jade_interp = model.name) ? "" : jade_interp) + '</h2><nav class="navbar navbar-default"><div class="container-fluid"></div><ul class="nav navbar-nav"><li><a' + jade.attr("href", model.flashURL, true, false) + '>Flash me!</a></li></ul></nav><div data-hook="card-form-wrapper" class="card-form-wrapper"></div><ul data-hook="card-collection" class="card-collection"></ul></div></div>');
+            buf.push('<div class="page cards"><div class="deck"><h2>' + jade.escape(null == (jade_interp = model.name) ? "" : jade_interp) + '</h2><a type="button"' + jade.attr("href", model.flashURL, true, false) + ' class="btn btn-default">Flash me!</a><div data-hook="card-form-wrapper" class="card-form-wrapper"></div><ul data-hook="card-collection" class="card-collection"></ul></div></div>');
         }).call(this, "model" in locals_for_with ? locals_for_with.model : typeof model !== "undefined" ? model : undefined);
         return buf.join("");
     };

@@ -25,7 +25,7 @@ module.exports = CardView.extend({
     this.form = new CardForm({
       model: this.model,
       el: this.queryByHook('card-form'),
-      submitCallback: this.handleSubmitForm
+      submitCallback: this.handleSubmitForm.bind(this)
     });
     this.registerSubview(this.form);
     this.focusForm();
@@ -36,11 +36,11 @@ module.exports = CardView.extend({
     textarea.focus();
   },
   handleSubmitForm: function (data) {
-    var deckModel = app.decks.at(self.deckIndex);
+    var deckModel = app.decks.at(this.deckIndex);
     deckModel.cards.create(data);
-    self.form.reset();
-    self.model.backIsActive = false;
-    self.focusForm();
+    this.form.reset();
+    this.model.backIsActive = false;
+    this.focusForm();
   },
   handleClickFlip: function (event) {
     event.preventDefault();

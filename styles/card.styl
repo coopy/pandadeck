@@ -32,12 +32,22 @@
   textarea
     font-size: 2em
 
-    margin-top: 1em
     width: 100%
     height: 4em
 
-.card-form a
-  margin-right: 1em
+.card-form
+  position: relative
+
+  a
+    position: absolute
+    bottom: .5em
+
+  a.flip-card
+    left: 1em
+
+  a.submit
+    right: 1em
+
 
 .card-input-view[data-name='back']
   display: none
