@@ -13,6 +13,8 @@ npm start
 
 TODO
 ----
-- (new card) Pressing return in textarea on front should flip to back.
-- (new card) Pressing return in textarea on back should submit.
+- LocalstorageCollection needs to disambiguate between models that belong to
+  different collections with the same namespace.
+- Clicking an existing card in a deck should open edit mode.
+- Flashing mode styles needs love.
 - Create a nice swipe interaction for turning over a flash card.
